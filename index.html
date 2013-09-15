@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html >
+	<head>
+	    <meta charset="UTF-8">
+	<!--   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/> -->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- <meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<link rel="apple-touch-icon-precomposed" href="images/dolphin_klein.jpg"> -->
+
+	    <!-- make page testable for jasmine ui 
+	    <script type="text/javascript">eval(sessionStorage.jasmineui);</script>-->
+
+	 <!--    <link rel="stylesheet" href="css/antje.css">
+	    <script type="text/javascript" src="lib/jquery.js"></script>
+		
+	    <script type="text/javascript" src="lib/jquery.mobile-1.3.0.js"></script>
+	    <script type="text/javascript" src="lib/lodash.js"></script>
+	    <script type="text/javascript" src="lib/backbone.js"></script>
+	    <script type="text/javascript" src="model.js"></script>
+	     <script type="text/javascript" src="view.js"></script>
+	     <script type="text/javascript" src="antje.js"></script>    
+	  -->
+	   	<script type="text/javascript" src="libs/jquery.js"></script>
+	   	<script type="text/javascript" src="js/ifaktor.js"></script>
+	  	<link rel="stylesheet" href="layout/ifaktor.css">
+	  	<script type="text/javascript" src="libs/calenderWidget.js"></script>
+	    <title>iFaktor</title>
+	</head>
+
+
+	<body>
+		<div onclick="showMenu()" class="if-head">
+			<div class="if-head-rahmen">
+				<div class="if-head-inner">
+					09.05.2013
+				</div>
+			</div>	
+		</div>
+		<div class="if-menu">
+			<div class="if-menu-button" onclick="goHome()">
+			<div class="if-menu-icon"><img src="http://png-1.findicons.com/files/icons/1580/devine_icons_part_2/128/home.png" alt="Home"> Home</div> 
+			</div>
+			
+			<div class="if-menu-button" onclick="goKalender()">
+			<div class="if-menu-icon"><img src="http://cdn4.iconfinder.com/data/icons/pictograms-1/512/Calendar-128.png" alt="Kalender"> Kalender</div> 
+
+
+			</div>
+			
+			<div class="if-menu-button" onclick="goProfilaxis()" >
+			<div class="if-menu-icon"><img src="http://www.clker.com/cliparts/p/k/O/z/u/6/black-shield-th.png" alt="Profilaxis"> Profilaxis</div> 
+			</div>
+			
+			<div class="if-menu-button" onclick="goStatistik()">
+			<div class="if-menu-icon"><img src="http://cdn1.iconfinder.com/data/icons/large-black-icons/512/Chart_graph_pie_statistics.png" alt="Statisktik">  Statisktik</div>
+			</div>
+			
+			<div class="if-menu-button" onclick="goEinstellungen()">
+			<div class="if-menu-icon"><img src="http://wcdn1.dataknet.com/static/resources/icons/set20/f02a62985cde.png" alt="Einstellungen"> Einstellungen</div>
+			</div>
+			
+		</div>
+
+		<div class="if-popup rounded-corners-popup" id="if-popup">
+			<div>  Hier kommt dann rein was ob gespritzt wurde!
+			Tag=</div><span class="if-tag">?</span>
+			<div onclick="goNeuerEintrag(event)"><h4>+</h4>
+			</div>
+		</div>
+		
+
+		<div id="if-home">
+			<h1>Hallo iFaktor</h1>
+			<p>Das wird unsere neue tolle Applikation iFaktor</p>
+		</div>
+		
+
+		<div id="if-kalender" class="if-display-none">
+			<h1>Kalender</h1>
+			
+			
+			<div onclick="openPopUpKalender(event)" id="calendar" ></div>
+		</div>
+
+		<div id="if-kalender-neuer-eintrag" class="if-display-none">
+			<div><h4>Neuer Eintrag</h4></div>
+			Tag=<span class="if-tag">?</span>
+			<div class="if-eingabe-daten">
+				<div>Datum der Injektion<input type="date" class="if-tag"><br></div>
+				<div>Uhrzeit der Injektion<input type="time"><br></div>
+				<div>Einheiten<input type="number" min="0" max="10000" value="500" step="500"><br></div>
+			</div>
+
+		</div>
+
+		<div id="if-profilaxis" class="if-display-none">
+			<h1>Profilaxis</h1>
+		</div>
+
+		<div id="if-statistik" class="if-display-none">
+			<h1>Statistik</h1>
+		</div>
+
+		<div id="if-einstellungen" class="if-display-none">
+			<h1>Einstellungen</h1>
+			<div class="if-einstellung-text">
+				<div><div>Vorname: </div> <input onChange="changeName()" type="text" name="firstname" class="if-eingabestelle" id="if-einstellungen-vorname"><br> </div>
+				<div><div>Gewicht: </div> <input type="text" class="if-eingabestelle"><br></div>
+				<div><div>Restaktivität: </div> <input type="text" class="if-eingabestelle"><br></div>
+				<div><div>Halbwertszeit: </div> <input type="text" class="if-eingabestelle"><br></div>
+			</div>
+		</div>
+
+
+
+		<div class="buttonleiste">
+			<div onclick="minus10()" id="if-restbalken-less" >></div>
+			<div onclick="plus10()" id="if-restbalken-more"><</div>
+		</div>
+
+		<div class="restbalken-rahmen if-bottomn">
+			<div class="restbalken-inner">
+				<div id="if-restfaktor-balken" class="rounded-corners" >
+					<div id="if-restfaktor-zeiger" class="rounded-corners-right">
+						50%
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
